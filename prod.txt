@@ -1,0 +1,202 @@
+
+
+PROGRAM 1
+QUESTION 1:-WRITE A LEXICAL PROGRAM TO FIND WHETHER A IDENTIFIER IS VALID OR NOT.
+%{
+#include<stdio.h>
+%}
+%%
+[a-z|A-Z|_][a-z|A-Z|0-9]* {printf("valid identifier");}
+.* {printf("invalid identifier");}
+%%
+int yywrap(void){}
+void main(){
+yylex();
+}
+
+
+
+
+
+
+
+
+PROGRAM 2
+QUESTION 2:-WRITE A LEXICAL PROGRAM TO COUNT NUMBER OF VALID AS WELL AS VALID AND INVALID IDENTIFIER.
+%{
+#include<stdio.h>
+int count1=0;
+int count2=0;
+%}
+%%
+[a-z|A-Z|_][a-z|A-Z|0-9]* count1++;
+.* count2++;
+%%
+int yywrap(void){}
+void main(){
+yylex();
+printf("valid identifier are %d \n",count1);
+printf("invalid identifier are %d \n",count2);
+}
+
+
+
+PROGRAM 3
+QUESTION 3:-WRITE A LEXICAL CODE TO COUNT NUMBER OF ENTERS,TABS,SPACES AND CHARACTER.
+%{
+#include<stdio.h>
+int enters=0,spaces=0,tabs=0,charc=0;
+%}
+%%
+\n enters++;
+[ ] spaces++;
+\t tabs++;
+. charc++;
+%%
+int yywrap(void){}
+void main(){
+yylex();
+printf("number of enters are %d \n",enters);
+printf("number of spaces are %d \n",spaces);
+printf("number of tabs are %d \n",tabs);
+printf("number of character are %d \n",charc); }
+
+PROGRAM 4
+QUESTION 4:-WRITE A LEXICAL CODE TO FIND WHETHER A NUMBER IS DECIMAL OR INTEGER.
+%{
+#include<stdio.h>
+int countd=0;
+int counti=0;
+%}
+%%
+[0-9]+"."[0-9]+ countd++;
+[0-9]+ counti++;
+%%
+int yywrap(void){}
+void main(){
+yylex();
+printf("Number of decimals are %d \n",countd);
+printf("Number of integers are %d \n",counti);
+}
+
+
+
+
+PROGRAM 5
+QUESTION 5:-WRITE A LEXICAL CODE TO FIND WHETHER STRING IS VALID OR NOT,STRING IS VALID IF IT STARTS WITH AB AND END WITH AB.
+%{
+#include<stdio.h>
+%}
+%%
+[a][b][a-b]*[b][a] {printf("valid string");}
+.* {printf("invalid string");}
+%%
+int yywrap(void){}
+void main(){
+yylex();
+}
+
+						
+
+
+
+
+
+
+PROGRAM 6
+QUESTION 6:-WRITE A LEXICAL CODE TO FIND WHETHER STRING IS VALID OR NOT,STRING IS VALID IF IT STARTS WITH NUMBER AND END WITH APLHABET.
+%{
+#include<stdio.h>
+%}
+%%
+[0-9]+[a-z|A-Z|0-9]*[a-z|A-Z]* {printf("valid string");}
+.* {printf("invalid string");}
+%%
+int yywrap(void){}
+void main(){
+yylex();
+}
+
+
+
+
+
+
+PROGRAM 7
+QUESTION 7:-WRITE A LEXICAL CODE BY FILE HANDELING TO COUNT NUMBER OF ENTERS,SPACES,TABS AND CHARACTER FROM INPUT FILE AND PRINT THE OUTPUT FROM OUTPUT FILE.
+%{
+#include<stdio.h>
+int a=0,b=0,c=0,d=0;
+%}
+%%
+\n {a++;}
+[ ] {b++;}
+\t {c++;}
+.* {d++;}
+%%
+int yywrap()
+{
+return 1;
+}
+int main()
+{
+extern FILE *yyin,*yyout; 
+yyin=fopen("input.txt","r");
+yyout=fopen("output.txt","w");
+yylex();
+fprintf(yyout,"\n lines are=%d\n",a);
+fprintf(yyout,"\n spaces are=%d\n",b);
+fprintf(yyout,"\n Tabs are=%d\n",c);
+fprintf(yyout,"\n words are=%d\n",d);
+return 0;
+}
+
+
+
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+PROGRAM 8
+QUESTION 8:-WRITE A LEXICAL CODE BY FILE HANDELING TO COUNT NUMBER OF VALID AND INVALID IDENTIFIER FROM INPUT FILE AND PRINT THE OUTPUT INTO OUPUT FILE.
+%{
+#include<stdio.h>
+int vv=0,inv=0;
+%}
+%%
+[a-z|A-Z|_][a-z|A-Z|0-9]* {vv++;}
+.* {inv++;}
+%%
+int yywrap(){
+return 1;}
+int main(){
+extern FILE *yyin,*yyout; 
+yyin=fopen("input.txt","r");
+yyout=fopen("output.txt","w");
+yylex();
+fprintf(yyout,"\n valid identifiers are=%d\n",vv);
+fprintf(yyout,"\n invalid identifiers are=%d\n",inv);
+return 0;}
+
+            
+
